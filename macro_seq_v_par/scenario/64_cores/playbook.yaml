@@ -1,0 +1,22 @@
+tests:
+  - build2/1/build2_alone_1.yaml
+  - build2/1/build2_alone_1.yaml
+  - build2/1/build2_alone_1.yaml
+  # - compress/12/compress_alone_12.yaml
+  # - compress/12/compress_alone_12.yaml
+  # - compress/12/compress_alone_12.yaml
+  # - dacapo/5/dacapo_alone_5.yaml
+  # - dacapo/5/dacapo_alone_5.yaml
+  # - dacapo/5/dacapo_alone_5.yaml
+  # - cloverleaf/1/cloverleaf_alone_1.yaml
+  # - cloverleaf/1/cloverleaf_alone_1.yaml
+  # - cloverleaf/1/cloverleaf_alone_1.yaml
+  # - cloverleaf/2/cloverleaf_alone_2.yaml
+  # - cloverleaf/2/cloverleaf_alone_2.yaml
+  # - cloverleaf/2/cloverleaf_alone_2.yaml
+  # - cloverleaf/3/cloverleaf_alone_3.yaml
+  # - cloverleaf/3/cloverleaf_alone_3.yaml
+  # - cloverleaf/3/cloverleaf_alone_3.yaml
+  - cloverleaf/4/cloverleaf_alone_4.yaml
+  - cloverleaf/4/cloverleaf_alone_4.yaml
+  - cloverleaf/4/cloverleaf_alone_4.yaml

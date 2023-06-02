@@ -1,0 +1,33 @@
+vms:
+  - name: build
+    vcpus: 6
+    memory: 4096
+    instances: 1
+    image: ubuntu-22.04
+    disk: 10000
+    test:
+      type: phoronix
+      name: build2
+      start: 0
+      nb-run: 1
+  - name: compress
+    vcpus: 6
+    memory: 4096
+    instances: 1
+    image: ubuntu-22.04
+    disk: 10000
+    test:
+      type: phoronix
+      name: compress-7zip
+      start: 0
+      nb-run: 12
+vm-sensor-config:
+  slices:
+    - "anon.slice/*"
+    - "test.slice/*"
+  perf-counters: ["PERF_COUNT_HW_CACHE_MISSES", "PERF_COUNT_HW_INSTRUCTIONS", "PERF_COUNT_HW_CPU_CYCLES", "PERF_COUNT_SW_CPU_CLOCK"]
+host-sensor-config:
+  slices:
+    - "anon.slice/*"
+    - "machine.slice/machine-qemu*/libvirt/vcpu*"
+  perf-counters: ["PERF_COUNT_HW_CACHE_MISSES", "PERF_COUNT_HW_INSTRUCTIONS", "PERF_COUNT_HW_CPU_CYCLES", "PERF_COUNT_SW_CPU_CLOCK"]

@@ -1,0 +1,22 @@
+vms: # List of VMs to launch on the remote machine
+  - name: small # name of the VM (used in the result to identify the VM)
+    vcpus: 6
+    memory: 4096
+    instances: 1 # Number of instances of the VM to launch
+    image: ubuntu-22.04
+    disk: 10000
+    test: # The test to launch on the instances of this VM template
+      type: phoronix
+      name: cloverleaf
+      start: 0 # second to wait before launching the compress-7zip experiment
+      nb-run: 4 # number of iteration of the test to run
+vm-sensor-config:
+  slices: # cgroups watched by the sensor running inside the VMs
+    - "anon.slice/*"
+    - "test.slice/*"
+  perf-counters: ["PERF_COUNT_HW_CACHE_MISSES", "PERF_COUNT_HW_INSTRUCTIONS", "PERF_COUNT_HW_CPU_CYCLES", "PERF_COUNT_SW_CPU_CLOCK"]
+host-sensor-config:
+  slices: # cgroups watched by the sensor running on the host server
+    - "anon.slice/*"
+    - "machine.slice/machine-qemu*/libvirt/vcpu*"
+  perf-counters: ["PERF_COUNT_HW_CACHE_MISSES", "PERF_COUNT_HW_INSTRUCTIONS", "PERF_COUNT_HW_CPU_CYCLES", "PERF_COUNT_SW_CPU_CLOCK"]

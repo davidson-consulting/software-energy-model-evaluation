@@ -1,0 +1,38 @@
+#+TITLE:  Experiences MiddleWare
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  fr
+#+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_LINK_UP:
+#+HTML_LINK_HOME:
+#+AUTHOR: ANON
+
+* Description
+
+Each folder contains a sub descriptions document.
+
+** Folders
+
+*** libs
+
+Folder containing binaries, keys and other utilitaries used in the experimentations
+
+*** macro_seq_v_par
+
+Experimentations on Phoronix using custom model based on performance counters CPU TIME and NUMBER of INSTRUCTIONS.
+
+*** macro_seq_v_par_powerapi
+
+Experimentation on Phoronix using powerapi as a division power model.
+
+*** macro_seq_v_par_scaphandre
+
+Experimentations on Phoronix using scaphandre as a division power model.
+
+*** micro_seq_v_par
+
+Experimentations on stress using scaphandre and powerapi as division power models.

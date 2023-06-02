@@ -1,0 +1,35 @@
+tests:
+  # - build2/1/build2_1_v_build2_1_same_time.yaml
+
+  # - compress/12/compress_12_v_compress_12_same_time.yaml
+  # - compress/12/compress_12_v_build2_1_same_time.yaml
+
+  # - dacapo/5/dacapo_5_v_dacapo_5_same_time.yaml
+  # - dacapo/5/dacapo_5_v_build2_1_same_time.yaml
+  # - dacapo/5/dacapo_5_v_compress_12_same_time.yaml
+
+  # - cloverleaf/1/cloverleaf_1_v_cloverleaf_1_same_time.yaml
+  # - cloverleaf/1/cloverleaf_1_v_compress_12_same_time.yaml
+  # - cloverleaf/1/cloverleaf_1_v_build2_1_same_time.yaml
+  # - cloverleaf/1/cloverleaf_1_v_dacapo_5_same_time.yaml
+
+  - cloverleaf/2/cloverleaf_2_v_cloverleaf_1_same_time.yaml
+  # - cloverleaf/2/cloverleaf_2_v_cloverleaf_2_same_time.yaml
+  # - cloverleaf/2/cloverleaf_2_v_compress_12_same_time.yaml
+  # - cloverleaf/2/cloverleaf_2_v_build2_1_same_time.yaml
+  # - cloverleaf/2/cloverleaf_2_v_dacapo_5_same_time.yaml
+
+  - cloverleaf/3/cloverleaf_3_v_cloverleaf_1_same_time.yaml
+  - cloverleaf/3/cloverleaf_3_v_cloverleaf_2_same_time.yaml
+  - cloverleaf/3/cloverleaf_3_v_cloverleaf_3_same_time.yaml
+  - cloverleaf/3/cloverleaf_3_v_compress_12_same_time.yaml
+  - cloverleaf/3/cloverleaf_3_v_build2_1_same_time.yaml
+  - cloverleaf/3/cloverleaf_3_v_dacapo_5_same_time.yaml
+
+  - cloverleaf/4/cloverleaf_4_v_cloverleaf_1_same_time.yaml
+  - cloverleaf/4/cloverleaf_4_v_cloverleaf_2_same_time.yaml
+  - cloverleaf/4/cloverleaf_4_v_cloverleaf_3_same_time.yaml
+  - cloverleaf/4/cloverleaf_4_v_cloverleaf_4_same_time.yaml
+  - cloverleaf/4/cloverleaf_4_v_compress_12_same_time.yaml
+  - cloverleaf/4/cloverleaf_4_v_build2_1_same_time.yaml
+  - cloverleaf/4/cloverleaf_4_v_dacapo_5_same_time.yaml
