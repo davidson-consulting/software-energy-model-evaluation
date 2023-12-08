@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  mongo:	
+    container_name: mongo
+    image: mongo
+    ports:
+      - 27017:27017
+
+  formula:
+    image: powerapi/smartwatts-formula
+    cap_add:
+      - ALL
+    volumes:
+      - ./config-formula.json:/config-formula.json
+      - /tmp/sensor_output:/tmp/sensor_output:w
+    command:
+      - "--config-file"
+      - "/config-formula.json"
+  
+  sensor:
+    image: powerapi/hwpc-sensor:latest
+    cap_add:
+      - ALL
+    volumes:
+      - /sys:/sys
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - ./config-sensor.json:/config-sensor.json
+    command:
+      - "--config-file"
+      - "/config-sensor.json"

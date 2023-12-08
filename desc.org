@@ -1,4 +1,4 @@
-#+TITLE:  Experiences MiddleWare
+#+TITLE:  Experiences
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  fr
@@ -19,7 +19,7 @@ Each folder contains a sub descriptions document.
 
 *** libs
 
-Folder containing binaries, keys and other utilitaries used in the experimentations
+Folder containing binaries, keys and other utilitaries used in the phoronix experimentations
 
 *** macro_seq_v_par
 
@@ -27,12 +27,12 @@ Experimentations on Phoronix using custom model based on performance counters CP
 
 *** macro_seq_v_par_powerapi
 
-Experimentation on Phoronix using powerapi as a division power model.
+Experimentation on Phoronix using powerapi as a power division model.
 
 *** macro_seq_v_par_scaphandre
 
-Experimentations on Phoronix using scaphandre as a division power model.
+Experimentations on Phoronix using scaphandre as a power division model.
 
 *** micro_seq_v_par
 
-Experimentations on stress using scaphandre and powerapi as division power models.
+Experimentations on stress using scaphandre and powerapi as power division  models.

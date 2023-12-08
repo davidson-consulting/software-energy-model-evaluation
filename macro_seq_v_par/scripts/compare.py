@@ -99,10 +99,12 @@ def main (args):
         print (C, "=", sum (ener [C]), " M = ", max (ener [C]), " T = ", len (ener [C]))
         with open ("/tmp/" + C, "w") as fp:
             for i in range (len (ener [C])):
-                fp.write ("(" + str (i + 1) + ", " + str (ener [C][i]) + ")\n")
+                fp.write ("(" + str (i + 1) + ", " + str (RAPL [i]) + ")\n")
 
         plt.plot (ener [C], label=C)
     print ("Machine = ", sum (RAPL))
+    print ("Active = ", sum (RAPL) - (len (ener [C]) * 22))
+
 
     plt.plot (RAPL, label="RAPL")
     plt.legend ()

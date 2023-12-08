@@ -1,0 +1,23 @@
+{
+    "verbose": true,
+    "stream": false,
+    "input": {
+	"puller" : {
+	    "model": "HWPCReport",
+	    "type": "mongodb",
+	    "uri": "mongodb://mongo",
+	    "db": "test",
+	    "collection": "prep"	
+	}
+    },
+    "output": {
+	"pusher_power": {
+	    "model": "PowerReport",
+	    "type": "csv",
+	    "directory": "/tmp/sensor_output/"	    
+	}
+    },
+    "cpu-base-freq": 1900,
+    "cpu-error-threshold": 2.0,
+    "disable-dram-formula": true
+}  

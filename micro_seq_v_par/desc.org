@@ -20,68 +20,91 @@ Experimentations launching stress-ng applications to evaluate PowerAPI and Scaph
 
 ** Folders
 - scripts: contains deployment and analysis scripts 
-- small-intel: results for experiments run on small-intel
-- small-amd: results for experiments run on small-amd
+- micro_no_HT: results for experiments run without hyperthreading nor turboboost
+- micro_with_HT: results for experiments run with HT and turboboost
 
 ** Usage
 *** Run the experiments
 All scripts are run directly on the target server
+
 **** PowerAPI
+
 You need to copy the following files on the target server:
-- config-formula.json
-- config-sensor.json
-- docker-compose.yaml
-- powerapi.py
+- utils/powerapi/*
+- utils/*
+- scripts/run.py
 
 Then you need to make sure that your system is configured to support CgroupV1
-(see: "https://powerapi.org/reference/cgroup/cgroup_v1_activation/") and that
-the following cgroups are present on the system: pg, pg1, pg2. You can do it
-through the following commands:
-- sudo cgcreate -g "perf_event:pg"
-- sudo cgcreate -g "perf_event:pg1"
-- sudo cgcreate -g "perf_event:pg2"
+(see: "https://powerapi.org/reference/cgroup/cgroup_v1_activation/").
+
+Run the following scripts:
+- utils/configure.sh
+- utils/powerapi/configure.sh
 
 Those are needed to run PowerAPI and the experimentation script.
 
-You can then run `python3 powerapi.py`
+Then change the script "scripts/run.py" to select the comparisons to launch
+You can then run `python3 run.py`
 
-Note: depending on your system, you may need to ajust the number of operations
-to run for each stress to have long-enough run time (e.g 1 minute). There is a
-dictionnary to modify in the script called "pg".
+Results are located in "./results"
 
 **** Scaphandre
 You will need to copy the following file on the target server:
-- scaphandre.py
+- utils/*
 
   You need to make sure your system uses CgroupV2.
 
-  You can then run `python3 scaphandre.py --time-factor 6 all` to run all
-  stress. As with powerapi, you can modify a dictionnary to modify the number of
-  operations for each stress. The "time-factor" flag let you multiply the number
-  of operations to run by a given factor.
+Run the following script:
+- utils/configure.sh
+
+Then change the script "scripts/run.py" to select the comparisons to launch
+You can then run `python3 run.py`
+
+Results are located in "./results"
 
 *** Analyse results
-There is several scripts to generate output:
-- plot_powerapi.py PATH NB_CORES: generate different analysis for the
-  experiments on NB_CORES (1, 2, 3) for powerapi on a results given path (ex
-  `../small-amd/powerapi/results`). You can comment / uncomment different lines
-  at the end of the main function to print what you need (the content of the
-  tikz used for the scatter plot, display the actual plot, print the avg
-  distance to the ideal ratio, ...)
-- plot_scaphandre.py PATH NB_CORES: generate different analysis for the
-  experiments on NB_CORES (1, 2, 3) for scaphandre on a results given path (ex
-  `../small-amd/scaphandre/results`). You can comment / uncomment different lines
-  at the end of the main function to print what you need (the content of the
-  tikz used for the scatter plot, display the actual plot, print the avg
-  distance to the ideal ratio, ...)
-- powerapi_variability.py PATH NB_CORES: generate tikz for boxplot presented in
-  the paper for the experiments on NB_CORES (1, 2, 3) for powerapi on a results
-  given path (ex `../small-amd/powerapi/results`)
-- scaphandre_variability.py PATH NB_CORES: generate tikz for boxplot presented
-  in the paper for the experiments on NB_CORES (1, 2, 3) for scaphandre on a
-  results given path (ex `../small-amd/scaphandre/results`)
 
-  For the powerapi analysis script, sometimes you can get a not file found
-  error. Sometimes, the PowerAPI formula give different name to the output (ex:
-  "sensor" or "cpu"). You can modify the script (ex: change "sensor-" to "cpu-"
-  and vice versa in the main function)
+The script "script/analyse.py" is used to analyse the results.
+It contains multiple functions to analyse different results :
+
+- Consumption curve
+  This scripts need the result "empty", and applications executed alone ranging from 1 to N threads
+#+BEGIN_SRC
+# plot the consumption curve from the result of the big intel node without HT
+custom.analyseAlone ("big-intel", False)
+
+# plot the consumption curve from the result of the ptero node with HT
+custom.analyseAlone ("ptero", True)
+
+
+# Plot rapl power consumption of a specific run
+custom.plotSingleTraceFiles ("micro_no_HT/big-intel/result/queens-4/energy.csv")
+custom.plotSingleTracesFile ("micro_no_HT/big-intel/result/queens-v-float64-4_4/energy.csv")
+#+END_SRC
+
+- Analyse scaphandre
+
+#+BEGIN_SRC
+# Analyse the result of powerapi on ptero without hyperthreading
+scaphandre.analyseScapandre ("ptero", False)
+
+# Analyse the result of powerapi on where PG1 is capped but not PG2
+# We need to have a ref value of PG2 to get its alone consumption
+# ptero-capped/result/ackermann-1 containing the alone result of ackermann but capped to 50%
+scaphandre.analyseScapandre ("ptero-capped", False, "ptero")
+#+END_SRC
+
+- Analyse powerapi
+
+#+BEGIN_SRC
+# Analyse the result of powerapi on ptero without hyperthreading
+powerapi.analysePowerAPI ("ptero", False)
+
+# Analyse the result of powerapi on ptero where PG1 is capped but not PG2
+# We need to have a ref value of PG2 to get its alone consumption
+# ptero-capped/result/ackermann-1 containing the alone result of ackermann but capped to 50%
+powerapi.analysePowerAPI ("ptero-capped", False, "ptero")
+
+# Plot the traces of powerapi on big-intel, int64 16 threads vs matrixprod 16 threads
+powerapi.plotSingleTraces ("big-intel", False, "int64", 16, "matrixprod", 16)
+#+END_SRC
